@@ -1,0 +1,14 @@
+<form (ngSubmit)="onSubmit()">
+    <label>
+      nom:
+      <input type="text" [(ngModel)]="nom" name="nom">
+    </label>
+    <br>
+    <label>
+      Mot de passe:
+      <input type="password" [(ngModel)]="password" name="password">
+    </label>
+    <br>
+    <button type="submit">Se connecter</button>
+  </form>
+  
