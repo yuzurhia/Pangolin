@@ -7,8 +7,14 @@ import { Router } from '@angular/router';
 export class TokenService {
   constructor(private router: Router) {}
 
-  saveToken(token: string): void {
+  saveToken(token: string, nom: string): void {
     localStorage.setItem('token', token);
-    this.router.navigate(['pangolin/:id']);
+    this.router.navigate(['pangolin/' + nom]);
+  }
+
+  isLogged() {
+    const token = localStorage.getItem('token');
+    console.log(token);
+    return !!token;
   }
 }

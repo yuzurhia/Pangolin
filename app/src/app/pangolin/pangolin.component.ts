@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { OnInit } from '@angular/core';
+// import { ngOnInit } from '@angular/core';
 
 @Component({
   selector: 'app-pangolin',
@@ -7,11 +7,13 @@ import { OnInit } from '@angular/core';
   styleUrls: ['./pangolin.component.css'],
 })
 export class PangolinComponent {
-  nom: String = '';
-  password: String = '';
-  role: String = '';
+  nom: string;
+  password: string;
+  role: string;
 
-  OnInit() {
-    // initialiser les proprietes du composant
+  constructor() {
+    this.nom = 'azeaea';
+    this.password = 'rqerzre';
+    this.role = 'rqerzre';
   }
 }

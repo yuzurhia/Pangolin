@@ -15,4 +15,6 @@ export class AuthService {
   login(credentials: Icredentials): Observable<Itoken> {
     return this.http.post<Itoken>(this.url, credentials);
   }
+
+  // getId()
 }
