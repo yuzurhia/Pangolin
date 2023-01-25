@@ -5,20 +5,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PangolinComponent } from './pangolin/pangolin.component';
 import { FormulaireComponent } from './formulaire/formulaire.component';
+import { HttpClientModule } from '@angular/common/http';
 
-import { FormsModule } from "@angular/forms";
+import { FormsModule } from '@angular/forms';
 @NgModule({
-  declarations: [
-    AppComponent,
-    PangolinComponent,
-    FormulaireComponent
-  ],
-  imports: [
-    FormsModule,
-    BrowserModule,
-    AppRoutingModule
-  ],
+  declarations: [AppComponent, PangolinComponent, FormulaireComponent],
+  imports: [FormsModule, BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
