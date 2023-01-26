@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 const PangolinSchema = new mongoose.Schema({
-  // _id: mongoose.Types.ObjectId,
+  _id: mongoose.Types.ObjectId,
   nom: {
     type: String,
     require: true,

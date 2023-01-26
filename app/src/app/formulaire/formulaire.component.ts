@@ -10,7 +10,6 @@ import { TokenService } from '../service/token.service';
 export class FormulaireComponent {
   nom: string = '';
   password: string = '';
-
   OnInit() {}
 
   constructor(
@@ -23,8 +22,7 @@ export class FormulaireComponent {
       .login({ nom: this.nom, password: this.password })
       .subscribe(
         (data) => {
-          console.log(data.token),
-            this.TokenService.saveToken(data.token, this.nom);
+          this.TokenService.saveToken(data.token, data._id);
         },
         (err) => console.log(err)
       );

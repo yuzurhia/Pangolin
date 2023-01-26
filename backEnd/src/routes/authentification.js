@@ -13,10 +13,7 @@ const router = express.Router();
 //   res.send("hello word");
 // });
 
-router.get("/pangolin", (req, res) => {
-  console.log(req.body);
-  res.json({ msg: "welcome pangolin", nom: req.body.nom });
-});
+router.get("/pangolin/:id", pangolin.getPangolin);
 
 // route for registering a new account
 router.post("/register", pangolin.createPangolin);
@@ -35,8 +32,10 @@ router.post("/logout", async (req, res) => {
 // route for adding a new friend
 router.post("/addPangolin", pangolin.addPangolinFriend);
 
+// router.get ("/getPangolinId/:id",pangolin.getPangolinId)
+
 // route to get pangolin's friends
-router.get("/pangolinFriends", pangolin.getPangolinFriends);
+router.get("/pangolinFriends/:id", pangolin.getPangolinFriends);
 
 router.get("/getAllPangolin", pangolin.getAllPangolin);
 

@@ -11,6 +11,7 @@ const routes: Routes = [
     component: PangolinComponent,
     canActivate: [AuthGuard],
   },
+
   {
     path: '',
     redirectTo: 'formulaire',

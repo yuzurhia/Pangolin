@@ -9,8 +9,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
 import { FormsModule } from '@angular/forms';
+import { RoleComponent } from './role/role.component';
+import { AmisComponent } from './amis/amis.component';
+import { AmiComponent } from './ami/ami.component';
 @NgModule({
-  declarations: [AppComponent, PangolinComponent, FormulaireComponent],
+  declarations: [AppComponent, PangolinComponent, FormulaireComponent, RoleComponent, AmisComponent, AmiComponent],
   imports: [
     FormsModule,
     BrowserModule,

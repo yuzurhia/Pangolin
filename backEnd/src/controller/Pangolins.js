@@ -42,12 +42,11 @@ const loginPangolin = async (req, res) => {
   const token = jwt.sign({ id: pangolin._id }, process.env.JWT_SECRET, {
     expiresIn: 3600,
   });
-  res.json({ token });
+  res.json({ token, _id: pangolin._id });
 };
 
 const getPangolin = async (req, res) => {
   const pangolin = await pangolinModel.findById(req.params.id);
-  console.log("qeaqdfsdf" + pangolin);
   if (!pangolin) {
     return res.status(404).json({ msg: "Pangolin not found" });
   }
@@ -56,7 +55,6 @@ const getPangolin = async (req, res) => {
 
 const testPangolin = async (req, res) => {
   const { nom, password, role } = req.body;
-  console.log("testPangolin");
   try {
     const pangolin = await pangolinModel.create({
       nom,
@@ -71,7 +69,6 @@ const testPangolin = async (req, res) => {
 
 const addPangolinFriend = async (req, res) => {
   const { _id, idFriend } = req.body;
-  console.log("ajout amis" + _id, idFriend);
   // Interception d'erreur
   const pangolinExist = await pangolinModel.findOne({
     amis: req.body.idFriend,
@@ -95,7 +92,7 @@ const addPangolinFriend = async (req, res) => {
 };
 
 const getPangolinFriends = async (req, res) => {
-  const _id = req.body._id;
+  const _id = req.params.id;
   const pangolin = await pangolinModel.findById({ _id });
   if (!pangolin) {
     return res.status(404).json({ msg: "Pangolin's friend not found" });
@@ -104,14 +101,11 @@ const getPangolinFriends = async (req, res) => {
 };
 
 const getAllPangolin = async (req, res) => {
-  // console.log(pangolins);
   try {
     const pangolins = await pangolinModel.find({});
-    // console.log(pangolins);
     let tableau_ID = [];
     for (let i = 0; i < pangolins.length; i++) {
       const element = pangolins[i];
-      // console.log(element._id);
       tableau_ID.push(element._id);
     }
     res.status(201).json(tableau_ID);
@@ -119,6 +113,10 @@ const getAllPangolin = async (req, res) => {
     res.status(200).send({ error });
   }
 };
+
+// const getPangolinId = async (req, res) => {
+//   try
+// }
 
 export default {
   createPangolin,
@@ -128,4 +126,5 @@ export default {
   addPangolinFriend,
   getPangolinFriends,
   getAllPangolin,
+  // getPangolinId,
 };
