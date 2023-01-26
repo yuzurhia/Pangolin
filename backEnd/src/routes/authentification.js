@@ -32,7 +32,13 @@ router.post("/logout", async (req, res) => {
   // TODO: nettoyer le token
 });
 
-router.post("/test", pangolin.testPangolin);
+// route for adding a new friend
+router.post("/addPangolin", pangolin.addPangolinFriend);
+
+// route to get pangolin's friends
+router.get("/pangolinFriends", pangolin.getPangolinFriends);
+
+router.get("/getAllPangolin", pangolin.getAllPangolin);
 
 // router.use(verifyToken);
 export default router;

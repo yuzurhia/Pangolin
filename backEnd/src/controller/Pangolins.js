@@ -63,10 +63,69 @@ const testPangolin = async (req, res) => {
       password,
       role,
     });
-    res.status(201).json({ pangolin: user._id });
+    res.status(201).json({ pangolin: nom });
   } catch (error) {
-    res.status(200).send({ err });
+    res.status(200).send({ error });
   }
 };
 
-export default { createPangolin, loginPangolin, getPangolin, testPangolin };
+const addPangolinFriend = async (req, res) => {
+  const { _id, idFriend } = req.body;
+  console.log("ajout amis" + _id, idFriend);
+  // Interception d'erreur
+  const pangolinExist = await pangolinModel.findOne({
+    amis: req.body.idFriend,
+  });
+  if (pangolinExist) {
+    return res.status(400).json({ msg: "pangolin already friend" });
+  }
+  // const pangolin = await pangolinModel.findOne({ _id: _id });
+  // if (pangolin) {
+  //   return res.status(400).json({ msg: "pangolin does exists" });
+  // }
+  try {
+    const pangolin = await pangolinModel.updateOne(
+      { _id: _id },
+      { $push: { amis: idFriend } }
+    );
+    res.status(201).json({ pangolin: _id });
+  } catch (error) {
+    res.status(200).send({ error });
+  }
+};
+
+const getPangolinFriends = async (req, res) => {
+  const _id = req.body._id;
+  const pangolin = await pangolinModel.findById({ _id });
+  if (!pangolin) {
+    return res.status(404).json({ msg: "Pangolin's friend not found" });
+  }
+  res.json(pangolin.amis);
+};
+
+const getAllPangolin = async (req, res) => {
+  // console.log(pangolins);
+  try {
+    const pangolins = await pangolinModel.find({});
+    // console.log(pangolins);
+    let tableau_ID = [];
+    for (let i = 0; i < pangolins.length; i++) {
+      const element = pangolins[i];
+      // console.log(element._id);
+      tableau_ID.push(element._id);
+    }
+    res.status(201).json(tableau_ID);
+  } catch (error) {
+    res.status(200).send({ error });
+  }
+};
+
+export default {
+  createPangolin,
+  loginPangolin,
+  getPangolin,
+  testPangolin,
+  addPangolinFriend,
+  getPangolinFriends,
+  getAllPangolin,
+};
