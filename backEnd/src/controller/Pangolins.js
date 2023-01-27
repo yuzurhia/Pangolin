@@ -118,6 +118,21 @@ const getAllPangolin = async (req, res) => {
 //   try
 // }
 
+const updateRole = async (req, res) => {
+  console.log(req.body);
+  const { _id, role } = req.body;
+  try {
+    const pangolin = await pangolinModel.findByIdAndUpdate(
+      _id,
+      { role },
+      { new: true }
+    );
+    return res.send(pangolin);
+  } catch (error) {
+    return res.status(500).send(error);
+  }
+};
+
 export default {
   createPangolin,
   loginPangolin,
@@ -127,4 +142,5 @@ export default {
   getPangolinFriends,
   getAllPangolin,
   // getPangolinId,
+  updateRole,
 };
