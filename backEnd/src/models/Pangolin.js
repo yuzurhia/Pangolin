@@ -1,7 +1,6 @@
 import mongoose from "mongoose";
 
 const PangolinSchema = new mongoose.Schema({
-  _id: mongoose.Types.ObjectId,
   nom: {
     type: String,
     require: true,
@@ -11,7 +10,7 @@ const PangolinSchema = new mongoose.Schema({
     require: true,
   },
   role: {
-    type: String,
+    type: "Guerrier" | "Alchimiste" | "Sorcier" | "Espions" | "Enchanteur",
     require: false,
   },
   amis: [{ type: mongoose.Types.ObjectId, ref: "Pangolin" }],

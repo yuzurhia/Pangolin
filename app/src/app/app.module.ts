@@ -12,8 +12,9 @@ import { FormsModule } from '@angular/forms';
 import { RoleComponent } from './role/role.component';
 import { AmisComponent } from './amis/amis.component';
 import { AmiComponent } from './ami/ami.component';
+import { RegisterComponent } from './register/register.component';
 @NgModule({
-  declarations: [AppComponent, PangolinComponent, FormulaireComponent, RoleComponent, AmisComponent, AmiComponent],
+  declarations: [AppComponent, PangolinComponent, FormulaireComponent, RoleComponent, AmisComponent, AmiComponent, RegisterComponent],
   imports: [
     FormsModule,
     BrowserModule,

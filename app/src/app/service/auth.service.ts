@@ -8,13 +8,16 @@ import { Itoken } from '../interface/itoken';
   providedIn: 'root',
 })
 export class AuthService {
-  url = 'http://localhost:3000/login';
+  url = 'http://localhost:3000/';
 
   constructor(private http: HttpClient) {}
 
   login(credentials: Icredentials): Observable<Itoken> {
-    return this.http.post<Itoken>(this.url, credentials);
+    return this.http.post<Itoken>(this.url + 'login', credentials);
   }
 
+  register(credentials: any): Observable<any> {
+    return this.http.post<any>(this.url + 'register', credentials);
+  }
   // getId()
 }

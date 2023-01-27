@@ -1,0 +1,26 @@
+<form (ngSubmit)="onSubmit()">
+  <label>
+    nom:
+    <input type="text" [(ngModel)]="nom" name="nom" />
+  </label>
+
+  <br />
+
+  <label>
+    Mot de passe:
+    <input type="password" [(ngModel)]="password" name="password" />
+  </label>
+  <br />
+
+  <select name="role" type="role" [(ngModel)]="role">
+    <option value="Guerrier">Guerrier</option>
+    <option value="Alchimiste">Alchimiste</option>
+    <option value="Sorcier">Sorcier</option>
+    <option value="Espions">Espions</option>
+    <option value="Enchanteur">Enchanteur</option>
+  </select>
+
+  <br />
+
+  <button type="submit">Se connecter</button>
+</form>

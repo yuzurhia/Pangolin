@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Iid } from '../interface/iid';
-import { Ipangolin } from './ipangolin';
+import { Ipangolin } from '../interface/ipangolin';
 
 @Injectable({
   providedIn: 'root',
