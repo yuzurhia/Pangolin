@@ -1,10 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Iid } from '../interface/iid';
 import { Ipangolin } from '../interface/ipangolin';
 // import { Irole } from '../interface/irole';
 import { FriendsService } from '../service/friends.service';
-// import { ngOnInit } from '@angular/core';
 
 @Component({
   selector: 'app-pangolin',
@@ -18,8 +17,21 @@ export class PangolinComponent {
   password: string | undefined;
   role!: 'Guerrier' | 'Alchimiste' | 'Sorcier' | 'Espions' | 'Enchanteur';
   amis: Array<string> | undefined;
-
   id: string | undefined;
+
+  roleList: string[] = [
+    'Guerrier',
+    'Alchimiste',
+    'Sorcier',
+    'Espions',
+    'Enchanteur',
+  ]; // liste des roles que le pangolin n'incarne pas
+  selectedRole!:
+    | 'Guerrier'
+    | 'Alchimiste'
+    | 'Sorcier'
+    | 'Espions'
+    | 'Enchanteur';
 
   constructor(
     private activitated: ActivatedRoute,
@@ -32,19 +44,24 @@ export class PangolinComponent {
       // this.pangolin._id = data['id'];
 
       this.friend.pangolin(this.id).subscribe((object) => {
-        console.log('pangolin composant' + object);
-
         this.nom = object.nom;
         this.password = object.password;
         this.role = object.role;
         this.amis = object.amis;
-
-        // ---------------------------
-        // this.pangolin.nom = object.nom;
-        // this.pangolin.password = object.password;
-        // this.pangolin.role = object.role;
-        // this.pangolin.amis = object.amis;
+        this.roleList = this.roleList.filter((item) => item != this.role);
       });
     });
+  }
+
+  onSubmit() {
+    this.role = this.selectedRole;
+    this.friend.updateRole(this.id, this.selectedRole).subscribe(
+      (data) => {
+        console.log('data:' + data);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 }

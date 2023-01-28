@@ -17,13 +17,8 @@ export class AmiComponent {
   constructor(private friend: FriendsService) {}
 
   ngOnInit(): void {
-    console.log(this.id);
-
     this.friend.pangolin(this.id).subscribe((pangolin) => {
-      console.log(pangolin);
-
       this.nom = pangolin.nom;
-      console.log(typeof pangolin.role);
 
       this.role = pangolin.role;
     });

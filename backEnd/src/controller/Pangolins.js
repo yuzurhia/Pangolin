@@ -119,7 +119,6 @@ const getAllPangolin = async (req, res) => {
 // }
 
 const updateRole = async (req, res) => {
-  console.log(req.body);
   const { _id, role } = req.body;
   try {
     const pangolin = await pangolinModel.findByIdAndUpdate(

@@ -1,5 +1,15 @@
 <p>pangolin works!</p>
 <p>nom: {{ nom }}</p>
-<p>role: {{ role }}</p>
+<p>Votre role: {{ role }}</p>
+<form (ngSubmit)="onSubmit()">
+  <div class="rolechanging">
+    <p>Changer de role:</p>
+    <select name="role" id="role" [(ngModel)]="selectedRole">
+      <option *ngFor="let role of roleList" [value]="role">{{ role }}</option>
+    </select>
+    <button type="submit">submit</button>
+  </div>
+</form>
+
 <app-role></app-role>
 <app-amis [friendList]="amis"></app-amis>

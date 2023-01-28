@@ -19,4 +19,7 @@ export class FriendsService {
   getFriend(_id: string | undefined): Observable<any> {
     return this.http.get<any>(this.url + 'pangolinFriends/' + _id);
   }
+  updateRole(_id: string | undefined, role: string): Observable<any> {
+    return this.http.post<any>(this.url + 'updateRole', { _id, role });
+  }
 }
