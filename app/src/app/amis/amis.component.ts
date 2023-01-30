@@ -50,14 +50,14 @@ export class AmisComponent implements OnChanges {
       console.log(this.friendList);
 
       this.id = data['id'];
-      // console.log('ngInit+' + this.id + '||' + data['id']);
     });
     this.friendsService.getAllPangolin().subscribe(
       (data) => {
         this.pangolinList = data.filter(
-          (element: any) => !this.friendList?.includes(element)
+          (element: any) =>
+            // console.log(element._id);
+            !this.friendList?.includes(element._id)
         );
-        console.log(this.pangolinList);
       },
       (error) => {
         console.log(error);

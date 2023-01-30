@@ -91,7 +91,6 @@ const addPangolinFriend = async (req, res) => {
 const deletePangolinFriend = async (req, res) => {
   try {
     const { _id, idFriend } = req.body;
-    console.log(typeof idFriend);
     const updatedPangolin = await pangolinModel.findById(_id);
     if (!updatedPangolin) {
       throw new error("Pangolin not found");
