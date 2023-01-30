@@ -51,7 +51,6 @@ export class AmiComponent implements OnChanges {
     console.log('id:' + this.id + '|' + this.idFriend);
     this.friend.removeFriend(this.id, this.idFriend).subscribe(
       (data) => {
-        console.log(data);
         this.onRefresh();
         this.refreshFriendList.subscribe(() => {
           // this.refreshFriendList.subscribe(() => {

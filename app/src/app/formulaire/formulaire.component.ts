@@ -26,7 +26,5 @@ export class FormulaireComponent {
         },
         (err) => console.log(err)
       );
-    // action de verification?
-    // action de erediction des routes
   }
 }

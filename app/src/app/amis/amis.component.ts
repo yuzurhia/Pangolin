@@ -77,17 +77,4 @@ export class AmisComponent implements OnChanges {
       }
     );
   }
-  // this.refreshFriendList.emit();
-  // this.refreshFriendList.emit();
-  // this.friendsService.getFriend(this.id).subscribe(
-  //   (data) => {
-  //     console.log(data);
-  //     this.friendList = data;
-  //   },
-  //   (error) => {
-  //     console.log(error);
-  //   }
-  // );
-  // --------------------------
-  // console.log(this.friendList);
 }

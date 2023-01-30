@@ -6,15 +6,17 @@ import { RegisterComponent } from './register/register.component';
 import { AuthGuard } from './_helpers/auth.guard';
 
 const routes: Routes = [
-  { path: 'formulaire', component: FormulaireComponent },
-  { path: 'register', component: RegisterComponent },
+  { path: 'formulaire', component: FormulaireComponent }, //connexion
+  { path: 'register', component: RegisterComponent }, //inscription
   {
+    //page Utilisateur
     path: 'pangolin/:id',
     component: PangolinComponent,
     canActivate: [AuthGuard],
   },
 
   {
+    //default
     path: '',
     redirectTo: 'formulaire',
     pathMatch: 'full',
