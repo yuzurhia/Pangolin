@@ -70,24 +70,36 @@ const testPangolin = async (req, res) => {
 const addPangolinFriend = async (req, res) => {
   const { _id, idFriend } = req.body;
   // Interception d'erreur
-  const pangolinExist = await pangolinModel.findOne({
-    amis: req.body.idFriend,
+  const pangolin = await pangolinModel.findOne({
+    _id: _id,
   });
-  if (pangolinExist) {
+  if (pangolin.amis.includes(idFriend)) {
     return res.status(400).json({ msg: "pangolin already friend" });
   }
-  // const pangolin = await pangolinModel.findOne({ _id: _id });
-  // if (pangolin) {
-  //   return res.status(400).json({ msg: "pangolin does exists" });
-  // }
+  // ajout pangolin au tableau
   try {
-    const pangolin = await pangolinModel.updateOne(
+    const newPangolin = await pangolinModel.updateOne(
       { _id: _id },
       { $push: { amis: idFriend } }
     );
-    res.status(201).json({ pangolin: _id });
+    res.status(201).json({ newPangolin });
   } catch (error) {
     res.status(200).send({ error });
+  }
+};
+
+const deletePangolinFriend = async (req, res) => {
+  try {
+    const { _id, idFriend } = req.body;
+    console.log(typeof idFriend);
+    const updatedPangolin = await pangolinModel.findById(_id);
+    if (!updatedPangolin) {
+      throw new error("Pangolin not found");
+    }
+    updatedPangolin.amis.pull(idFriend);
+    await updatedPangolin.save();
+  } catch (error) {
+    res.status(500).json({ error });
   }
 };
 
@@ -104,9 +116,12 @@ const getAllPangolin = async (req, res) => {
   try {
     const pangolins = await pangolinModel.find({});
     let tableau_ID = [];
+    const element = pangolins;
     for (let i = 0; i < pangolins.length; i++) {
-      const element = pangolins[i];
-      tableau_ID.push(element._id);
+      // console.log(element);
+      // console.log({element[i].nom});
+      console.log("typeof:" + typeof element[i].nom);
+      tableau_ID.push({ _id: element[i]._id, nom: element[i].nom });
     }
     res.status(201).json(tableau_ID);
   } catch (error) {
@@ -138,6 +153,7 @@ export default {
   getPangolin,
   testPangolin,
   addPangolinFriend,
+  deletePangolinFriend,
   getPangolinFriends,
   getAllPangolin,
   // getPangolinId,

@@ -1,5 +1,24 @@
-<p>
-  <tr *ngFor="let friend of friendList">
-    <app-ami [id]="friend"></app-ami>
+<!-- <p>{{ id }}</p> -->
+<div class="amis">
+  <p>
+    <tr *ngFor="let friend of friendList">
+      <app-ami
+        [idFriend]="friend"
+        [id]="id"
+        [refreshFriendList]="refreshFriendList"
+      ></app-ami>
+    </tr>
+  </p>
+</div>
+
+<div>
+  <!--ajouter en ami-->
+  <tr *ngFor="let pangolin of pangolinList">
+    <div class="card-pangolin">
+      <form (ngSubmit)="onSubmit(pangolin._id)">
+        <p>{{ pangolin.nom }}</p>
+        <button type="submit">Ajouter en ami</button>
+      </form>
+    </div>
   </tr>
-</p>
+</div>

@@ -32,7 +32,8 @@ router.post("/logout", async (req, res) => {
 // route for adding a new friend
 router.post("/addPangolin", pangolin.addPangolinFriend);
 
-// router.get ("/getPangolinId/:id",pangolin.getPangolinId)
+// route for remove a friend
+router.post("/deletePangolin", pangolin.deletePangolinFriend);
 
 // route to get pangolin's friends
 router.get("/pangolinFriends/:id", pangolin.getPangolinFriends);

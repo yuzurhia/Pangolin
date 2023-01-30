@@ -11,5 +11,9 @@
   </div>
 </form>
 
-<app-role></app-role>
-<app-amis [friendList]="amis"></app-amis>
+<!-- <app-role></app-role> -->
+<app-amis
+  [friendList]="amis"
+  [id]="id"
+  (refreshFriendList)="refreshFriendList()"
+></app-amis>

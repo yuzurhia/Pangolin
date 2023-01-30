@@ -1,5 +1,13 @@
-import { Component, Input } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ISmallPangolin } from '../interface/i-small-pangolin';
 import { FriendsService } from '../service/friends.service';
 
 @Component({
@@ -7,22 +15,79 @@ import { FriendsService } from '../service/friends.service';
   templateUrl: './amis.component.html',
   styleUrls: ['./amis.component.css'],
 })
-export class AmisComponent {
-  id: string | undefined;
+export class AmisComponent implements OnChanges {
+  pangolinList: Array<ISmallPangolin> | undefined; // Tout les pangolin qui ne sont  pas ami avec le pangolin
 
   @Input()
   friendList: Array<string> | undefined;
+  id: string | undefined;
+  // refreshFriendList: EventEmitter<any> = new EventEmitter();
+
+  @Output() refreshFriendList: EventEmitter<any> = new EventEmitter();
+
+  // refreshMethode: Function = this.refreshFriendList;
   constructor(
     private friendsService: FriendsService,
     private activitated: ActivatedRoute
-  ) {}
+  ) {
+    // this.refreshFriendList = new EventEmitter();
+  }
+
+  onRefresh() {
+    this.refreshFriendList.emit();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log(changes);
+
+    if (changes) {
+      // this.onRefresh();
+    }
+  }
 
   ngOnInit(): void {
-    this.activitated.params.subscribe(
+    this.activitated.params.subscribe((data) => {
+      console.log(this.friendList);
+
+      this.id = data['id'];
+      // console.log('ngInit+' + this.id + '||' + data['id']);
+    });
+    this.friendsService.getAllPangolin().subscribe(
       (data) => {
-        this.id = data['id'];
+        this.pangolinList = data.filter(
+          (element: any) => !this.friendList?.includes(element)
+        );
+        console.log(this.pangolinList);
+      },
+      (error) => {
+        console.log(error);
       }
-      // friendList = this.friendsService.getFriend();
+    );
+    //     this.friendsService await
+  }
+
+  onSubmit(pangolinID: string) {
+    this.friendsService.addFriend(this.id, pangolinID).subscribe(
+      (data) => {
+        console.log('pangolin ajouter avec succes');
+        this.onRefresh();
+      },
+      (error) => {
+        console.log(error);
+      }
     );
   }
+  // this.refreshFriendList.emit();
+  // this.refreshFriendList.emit();
+  // this.friendsService.getFriend(this.id).subscribe(
+  //   (data) => {
+  //     console.log(data);
+  //     this.friendList = data;
+  //   },
+  //   (error) => {
+  //     console.log(error);
+  //   }
+  // );
+  // --------------------------
+  // console.log(this.friendList);
 }

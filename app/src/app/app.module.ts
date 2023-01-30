@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -14,7 +14,15 @@ import { AmisComponent } from './amis/amis.component';
 import { AmiComponent } from './ami/ami.component';
 import { RegisterComponent } from './register/register.component';
 @NgModule({
-  declarations: [AppComponent, PangolinComponent, FormulaireComponent, RoleComponent, AmisComponent, AmiComponent, RegisterComponent],
+  declarations: [
+    AppComponent,
+    PangolinComponent,
+    FormulaireComponent,
+    RoleComponent,
+    AmisComponent,
+    AmiComponent,
+    RegisterComponent,
+  ],
   imports: [
     FormsModule,
     BrowserModule,
@@ -24,5 +32,6 @@ import { RegisterComponent } from './register/register.component';
   ],
   providers: [],
   bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule {}

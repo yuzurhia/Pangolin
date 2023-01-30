@@ -22,4 +22,19 @@ export class FriendsService {
   updateRole(_id: string | undefined, role: string): Observable<any> {
     return this.http.post<any>(this.url + 'updateRole', { _id, role });
   }
+
+  removeFriend(
+    _id: string | undefined,
+    idFriend: string | undefined
+  ): Observable<any> {
+    return this.http.post<any>(this.url + 'deletePangolin', { _id, idFriend });
+  }
+
+  addFriend(_id?: string, idFriend?: string): Observable<any> {
+    return this.http.post<any>(this.url + 'addPangolin', { _id, idFriend });
+  }
+
+  getAllPangolin(): Observable<any> {
+    return this.http.get<any>(this.url + 'getAllPangolin');
+  }
 }

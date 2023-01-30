@@ -1,0 +1,11 @@
+.amis{
+    border-color: blueviolet;
+    border:solid;
+    display: flex;
+}
+
+.card-pangolin{
+    border-color: red;
+    border:solid;
+    display: flex;
+}

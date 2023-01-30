@@ -38,6 +38,22 @@ export class PangolinComponent {
     private friend: FriendsService
   ) {}
 
+  refreshFriendList() {
+    console.log('refreshFriendList is emitting');
+
+    this.friend.getFriend(this.id).subscribe(
+      (data) => {
+        console.log('refresh' + this.id);
+
+        this.amis = data;
+        console.log(this.amis);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+
   ngOnInit(): void {
     this.activitated.params.subscribe((data) => {
       this.id = data['id'];
