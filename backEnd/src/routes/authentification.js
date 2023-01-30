@@ -8,11 +8,6 @@ import pangolin from "../controller/Pangolins.js";
 
 const router = express.Router();
 
-// router.get("/pangolin", (req, res) => {
-//   console.log("route is running 22323");
-//   res.send("hello word");
-// });
-
 router.get("/pangolin/:id", pangolin.getPangolin);
 
 // route for registering a new account

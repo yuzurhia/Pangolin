@@ -1,12 +1,11 @@
 import mongoose from "mongoose";
+import dotenv from "dotenv";
+dotenv.config();
 
 const mongodb = mongoose
-  .connect(
-    "mongodb+srv://tomy:htH8rXAoGMp95Ky8@pangolindb.gqmcllp.mongodb.net/?retryWrites=true&w=majority",
-    {
-      autoIndex: true,
-    }
-  )
+  .connect(process.env.MONGODB_URI, {
+    autoIndex: true,
+  })
   .then(() => console.log("connect to mongoDB"))
   .catch((err) => console.log("fail to connect"));
 
