@@ -37,4 +37,7 @@ export class FriendsService {
   getAllPangolin(): Observable<any> {
     return this.http.get<any>(this.url + 'getAllPangolin');
   }
+  getPangolinId(nom?: string): Observable<any> {
+    return this.http.get<any>(this.url + 'getIdPangolin/' + nom);
+  }
 }

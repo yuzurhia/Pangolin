@@ -38,5 +38,7 @@ router.get("/getAllPangolin", pangolin.getAllPangolin);
 // route to update the role of the pangolin
 router.post("/updateRole", pangolin.updateRole);
 
+// route to get id of a pangolin
+router.get("/getIdPangolin/:nom", pangolin.getID);
 // router.use(verifyToken);
 export default router;

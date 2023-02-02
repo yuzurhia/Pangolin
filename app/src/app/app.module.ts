@@ -13,6 +13,7 @@ import { RoleComponent } from './role/role.component';
 import { AmisComponent } from './amis/amis.component';
 import { AmiComponent } from './ami/ami.component';
 import { RegisterComponent } from './register/register.component';
+import { RegisterBisComponent } from './register-bis/register-bis.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,6 +23,7 @@ import { RegisterComponent } from './register/register.component';
     AmisComponent,
     AmiComponent,
     RegisterComponent,
+    RegisterBisComponent,
   ],
   imports: [
     FormsModule,

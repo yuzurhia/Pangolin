@@ -117,9 +117,6 @@ const getAllPangolin = async (req, res) => {
     let tableau_ID = [];
     const element = pangolins;
     for (let i = 0; i < pangolins.length; i++) {
-      // console.log(element);
-      // console.log({element[i].nom});
-      console.log("typeof:" + typeof element[i].nom);
       tableau_ID.push({ _id: element[i]._id, nom: element[i].nom });
     }
     res.status(201).json(tableau_ID);
@@ -146,6 +143,16 @@ const updateRole = async (req, res) => {
   }
 };
 
+const getID = async (req, res) => {
+  const nom = req.params.nom;
+  try {
+    const pangolin = await pangolinModel.findOne({ nom: nom });
+    return res.send(pangolin._id);
+  } catch (error) {
+    return res.status(500).send(error);
+  }
+};
+
 export default {
   createPangolin,
   loginPangolin,
@@ -155,6 +162,6 @@ export default {
   deletePangolinFriend,
   getPangolinFriends,
   getAllPangolin,
-  // getPangolinId,
   updateRole,
+  getID,
 };
